@@ -1,7 +1,7 @@
 package org.example.catalog.spi.spring.jdbc;
 
-import org.example.catalog.dto.ProductCategoryDto;
-import org.example.catalog.dto.ProductCategoryId;
+import org.example.catalog.dto.CatalogProductCategoryDto;
+import org.example.catalog.dto.CatalogProductCategoryId;
 import org.example.catalog.spi.FindProductCategoryByIdSpi;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.object.MappingSqlQuery;
@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class MappingSqlQueryFindProductCategoryById
-        extends MappingSqlQuery<ProductCategoryDto> implements FindProductCategoryByIdSpi {
+        extends MappingSqlQuery<CatalogProductCategoryDto> implements FindProductCategoryByIdSpi {
     public MappingSqlQueryFindProductCategoryById(DataSource ds) {
         super(ds, """
             select id, c_title, c_details, id_parent, c_version
@@ -26,17 +26,17 @@ public class MappingSqlQueryFindProductCategoryById
     }
 
     @Override
-    public Optional<ProductCategoryDto> findProductCategoryById(ProductCategoryId id) {
+    public Optional<CatalogProductCategoryDto> findProductCategoryById(CatalogProductCategoryId id) {
         return Optional.ofNullable(findObjectByNamedParam(Map.of("id", id.value())));
     }
 
     @Override
-    protected ProductCategoryDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return new ProductCategoryDto(
-                new ProductCategoryId(rs.getLong("id")),
+    protected CatalogProductCategoryDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+        return new CatalogProductCategoryDto(
+                new CatalogProductCategoryId(rs.getLong("id")),
                 rs.getString("c_title"),
                 rs.getString("c_details"),
-                ProductCategoryId.formLong(rs.getLong("id_parent")),
+                CatalogProductCategoryId.formLong(rs.getLong("id_parent")),
                 rs.getInt("c_version")
         );
     }

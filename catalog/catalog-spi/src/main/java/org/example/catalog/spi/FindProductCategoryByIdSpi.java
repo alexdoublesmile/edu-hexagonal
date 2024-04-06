@@ -1,11 +1,11 @@
 package org.example.catalog.spi;
 
-import org.example.catalog.dto.ProductCategoryDto;
-import org.example.catalog.dto.ProductCategoryId;
+import org.example.catalog.dto.CatalogProductCategoryDto;
+import org.example.catalog.dto.CatalogProductCategoryId;
 
 import java.util.Optional;
 
 @FunctionalInterface
 public interface FindProductCategoryByIdSpi {
-    Optional<ProductCategoryDto> findProductCategoryById(ProductCategoryId id);
+    Optional<CatalogProductCategoryDto> findProductCategoryById(CatalogProductCategoryId id);
 }
