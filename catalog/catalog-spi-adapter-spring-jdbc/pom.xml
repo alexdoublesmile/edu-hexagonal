@@ -5,25 +5,28 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.example</groupId>
-        <artifactId>hexagonal-parent</artifactId>
+        <artifactId>catalog</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>catalog</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>catalog-api</module>
-        <module>catalog-dto</module>
-        <module>catalog-spi</module>
-        <module>catalog-spi-adapter-spring-jdbc</module>
-        <module>catalog-api-adapter-spring-webmvc</module>
-        <module>catalog-core</module>
-        <module>catalog-microservice</module>
-    </modules>
+    <artifactId>catalog-spi-adapter-spring-jdbc</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>catalog-spi</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
